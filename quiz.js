@@ -1,10 +1,10 @@
 var myQuestions = [
     {
-      question: "What is 10/2?",
+      question: "Who are the founders of POY?",
       answers: {
-        a: '3',
-        b: '5',
-        c: '115'
+        a: 'Sarah,Tia,Marley',
+        b: 'Jeune,Lula,Jane',
+        c: 'Kahn,Tia,Jeune'
       },
       correctAnswer: 'b'
     },
@@ -18,10 +18,12 @@ var myQuestions = [
       correctAnswer: 'c'
     }
   ];
+
   
   var quizContainer = document.getElementById('quiz');
   var resultsContainer = document.getElementById('results');
   var submitButton = document.getElementById('submit');
+  
   
   generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
   

@@ -3,9 +3,15 @@ const questionContainerElement = document.getElementById
 ('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById('answer-buttons')
+
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () =>{
+  currentQuestionIndex++
+  setNextQuestion()
+})
+
 
 function startGame() {
 console.log('Started')
@@ -35,14 +41,41 @@ function showQuestion(question) {
   })
 }
 
-function resetState() {}
+function resetState() {
+  clearStatusClass(document.body)
   nextButon.classList.add('hide')
   while (answerButtonElement.FirstChild) 
   answerButtonElement.removeChild
   (answerButtonElement.firstChild)
+}
 
 function selectAnswer() {
-  showQuestion(shuffledQuestions)[currentQuestionIndex] 
+ const selectedButton = e.target
+ const correct = selectedButton.dataset.correct
+ setStatusClass(document.body, correct)
+ Array.from(answerButtonsElement.children).forEach(button =>{
+  setStatusClass(button, button.dataset.correct)
+ })
+ if (shuffledQuestions.length > currentQuestionIndex + 1){
+  nextButton.classList.remove('hide')
+ } else {
+  startButton.innerText = 'Restart'
+  startButton.classList.remove('hide')
+ }
+}
+
+function setStatusClass(element, correct) {
+  clearStatusClass(element)
+  if (correct) {
+    element.classlist.add('correct')
+  } else {
+    element.classList.add('wrong')
+  }
+}
+
+function clearStatusClass(element) {
+  element.classList.remove('correct')
+  element.classList.remove('wrong')
 }
 
 const question = [
@@ -52,5 +85,5 @@ const question = [
         { Text:'4', correct: true},
         {Text:'22', correct:false}
     ]
-  }
+  },
 ]
